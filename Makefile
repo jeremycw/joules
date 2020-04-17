@@ -1,17 +1,26 @@
-.PHONY: bin/crown-jewels clean
+SHELL := /bin/bash
 
-all: bin/crown-jewels
+.PHONY: bin/joules clean init
 
-bin/crown-jewels: vendor/mruby/build_config.rb | bin
-	cp build_config.rb vendor/mruby/build_config.rb
+all: bin/joules
+
+bin/joules: vendor/mruby/build_config.rb | bin
 	pushd vendor/mruby; rake; popd
-	cp vendor/mruby/bin/mruby bin/crown-jewels
+	cp vendor/mruby/bin/mruby bin/joules
 
-run: bin/crown-jewels
-	./bin/crown-jewels
+run: bin/joules
+	./bin/joules
+
+vendor/mruby/build_config.rb: build_config.rb
+	cp build_config.rb vendor/mruby/build_config.rb
 
 bin:
 	mkdir bin
+
+init:
+	git submodule update --init --recursive
+	git remote rm origin
+	cp build_config.rb vendor/mruby/build_config.rb
 
 clean:
 	pushd vendor/mruby; rake clean; popd
