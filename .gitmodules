@@ -1,0 +1,12 @@
+[submodule "vendor/mruby"]
+	path = vendor/mruby
+	url = git@github.com:mruby/mruby.git
+[submodule "vendor/mruby-async-http-server"]
+	path = vendor/mruby-async-http-server
+	url = git@github.com:jeremycw/mruby-async-http-server.git
+[submodule "vendor/mruby-web-framework"]
+	path = vendor/mruby-web-framework
+	url = git@github.com:jeremycw/mruby-web-framework.git
+[submodule "vendor/mruby-mustache"]
+	path = vendor/mruby-mustache
+	url = git@github.com:jeremycw/mruby-mustache.git
