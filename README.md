@@ -54,16 +54,18 @@ To run a Joules project you need to be able to compile mruby. To do this you wil
 ### MacOS
 
 `brew install bison`
+
 `brew install ruby`
 
 ### Ubuntu
 
 `apt-get install bison`
+
 `apt-get install ruby`
 
 ### To Create a New Project
 
-1. Clone this repo `git clone git@github.com:jeremycw/joules.git <your-project-name>
+1. Clone this repo `git clone git@github.com:jeremycw/joules.git <your-project-name>`
 2. Run `make init` in the top level directory. This only needs to be run once when setting up a project
 3. Run `make run` to compile the project and run it.
 4. Navigate to `http://localhost:8080/` to test
