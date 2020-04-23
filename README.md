@@ -41,6 +41,65 @@ server = WebFramework::Server.new(8080, [
 server.listen
 ```
 
+## Benchmarks
+
+Run on a 2015 era Macbook with a 2.5ghz Intel Core i7
+
+### Joules
+
+Running Apache Bench on the above example:
+
+`ab -k -c 200 -n 100000 http://localhost:8080/`
+
+`Requests per second:    62098.88 [#/sec] (mean)`
+
+### NGINX
+
+With config:
+
+```
+worker_processes 1;
+
+http {
+    server {
+        listen 8080;
+        location / {
+             add_header Content-Type text/html;
+             return 200 '<h1>Hello, World!</h1>';
+        }
+    }
+}
+```
+
+`ab -k -c 200 -n 100000 http://localhost:8080/`
+
+`Requests per second:    74441.26 [#/sec] (mean)`
+
+### Sinatra
+
+With puma config (4 worker processes 20 threads each):
+
+```ruby
+#!/usr/bin/env puma
+threads 20, 20
+port 8080
+workers 4
+```
+
+And server:
+
+```ruby
+require 'sinatra'
+
+class Application < Sinatra::Base
+  get '/' do
+    '<h1>Hello world!</h1>'
+  end
+end
+```
+
+`Requests per second:    12892.84 [#/sec] (mean)`
+
 ## Usage
 
 ### Prerequisite Dependencies
